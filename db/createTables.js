@@ -2,6 +2,10 @@ require("dotenv").config();
 const pool = require("./pool"); // dein pool.js
 
 const SQL = `
+DROP TABLE IF EXISTS item_attribute;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS element;
+
 CREATE TABLE IF NOT EXISTS element (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL
@@ -12,6 +16,7 @@ CREATE TABLE IF NOT EXISTS item (
   type VARCHAR(50) NOT NULL,
   stock INTEGER,
   price NUMERIC,
+  image_url TEXT,
   element_id INTEGER REFERENCES element(id)
 );
 
