@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS element (
 
 CREATE TABLE IF NOT EXISTS item (
   id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  description TEXT,
   type VARCHAR(50) NOT NULL,
   stock INTEGER,
   price NUMERIC,
