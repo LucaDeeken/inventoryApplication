@@ -1,0 +1,43 @@
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.offcanvas {
+  max-width: 75%;
+}
+
+.cardArea {
+  height: 80%;
+}
+body .container-fluid {
+  height: 100%;
+}
+
+body .container-fluid .row {
+  height: 100%;
+}
+
+.ul-tag {
+  padding-bottom: 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.ul-tag li {
+  font-size: 1.1rem;
+  padding-top: 0.5rem;
+}
+
+.cardArea {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card {
+  min-height: 300px;
+  max-height: 400px;
+}

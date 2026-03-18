@@ -2,11 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wizard Boutique</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <p>huba</p>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container d-flex justify-content-center position-relative">
+        <a class="navbar-brand fs-2 fw-semibold" href="#">
+          Wizard Boutique
+        </a>
+        <!-- Toggle Button nur auf Handys -->
+        <button
+          class="btn btn-primary d-md-none position-absolute start-0 ms-2"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileSidebar"
+          aria-controls="mobileSidebar"
+        >
+          Menu
+        </button>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Offcanvas Sidebar -->
+        <div
+          class="offcanvas offcanvas-start d-md-none"
+          tabindex="-1"
+          id="mobileSidebar"
+          aria-labelledby="mobileSidebarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Categories</h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="nav flex-column ul-tag ps-md-0">Element
+              <li class="nav-item"><a class="nav-link" href="/element/Fire">Fire</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Water">Water</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Earth">Earth</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Air">Air</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Holy">Holy</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Unholy">Unholy</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Chaos">Chaos</a></li>
+            </ul>
+             <ul class="nav flex-column ul-tag ps-md-0">Weapon-Type
+              <li class="nav-item"><a class="nav-link" href="/weapon/Wand">Wands</a></li>
+              <li class="nav-item"><a class="nav-link" href="/weapon/Hat">Hats</a></li>
+              <li class="nav-item"><a class="nav-link" href="/weapon/Robe">Robes</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column ul-tag ps-md-3">Element
+              <li class="nav-item"><a class="nav-link" href="/element/Fire">Fire</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Water">Water</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Earth">Earth</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Air">Air</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Holy">Holy</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Unholy">Unholy</a></li>
+              <li class="nav-item"><a class="nav-link" href="/element/Chaos">Chaos</a></li>
+            </ul>
+            <ul class="nav flex-column ul-tag ps-md-3">Weapon-Type
+              <li class="nav-item"><a class="nav-link" href="/weapon/Wand">Wands</a></li>
+              <li class="nav-item"><a class="nav-link" href="/weapon/Hat">Hats</a></li>
+              <li class="nav-item"><a class="nav-link" href="/weapon/Robe">Robes</a></li>
+            </ul>
+          </div>
+        </aside>
+        <main class="col-md-9 col-lg-10 px-md-4 cardArea">
+              
+                <% items.forEach(item => { %>
+                  <%- include('card', {item: item} ) %>
+                <% }) %>
+             
+        </main>
+      </div>
+    </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
