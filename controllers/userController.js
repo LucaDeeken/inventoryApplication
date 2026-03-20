@@ -3,6 +3,7 @@ const db = require("../db/queries");
 async function getAll(req, res) {
   const elementItems = await db.getAllItems();
   const filteredElementItems = filterDoubles(elementItems);
+  console.log(filteredElementItems);
   res.render("index", { items: filteredElementItems });
 }
 
@@ -33,8 +34,17 @@ function filterDoubles(sqlReturn) {
   return newArr;
 }
 
+async function getItemId(req, res) {
+  console.log(req.params);
+  const { id } = req.params;
+  const elementItems = await db.getItem(id);
+  const filteredElementItems = filterDoubles(elementItems);
+  res.render("index", { item: filteredElementItems[0] });
+}
+
 module.exports = {
   getAll,
   getElement,
   getWeapon,
+  getItemId,
 };

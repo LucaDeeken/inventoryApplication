@@ -83,9 +83,15 @@
         </aside>
         <main class="col-md-9 col-lg-10 px-md-4 cardArea">
               
-                <% items.forEach(item => { %>
-                  <%- include('card', {item: item} ) %>
-                <% }) %>
+  <% if (typeof items !== 'undefined' && items.length > 0) { %>
+    <% items.forEach(item => { %>
+      <%- include('card', { item: item }) %>
+    <% }) %>
+  <% } %>
+
+  <% if (typeof item !== 'undefined') { %>
+      <%- include('cardDetail', { item: item }) %>
+  <% } %>
              
         </main>
       </div>

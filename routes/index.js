@@ -6,5 +6,6 @@ usersRouter.get("/", usersController.getAll);
 usersRouter.get("/all", usersController.getAll);
 usersRouter.get("/element/:searchElement", usersController.getElement);
 usersRouter.get("/weapon/:searchWeapon", usersController.getWeapon);
+usersRouter.get("/item/:id", usersController.getItemId);
 
 module.exports = usersRouter;

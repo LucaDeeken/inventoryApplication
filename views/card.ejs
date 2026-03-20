@@ -1,20 +1,22 @@
-<div class="card">
-  <img
-    src="<%=item.image_url %>"
-    class="card-img-top"
-    alt="<%=item.description %>"
-  />
-  <div class="card-body">
-    <h5 class="card-title"><%=item.item_name %></h5>
-    <p class="card-text description-text"><%=item.description %></p>
-    <p class="card-text fw-bold">
-      Stats:
-      <span class="text-success">+<%=item.value %></span>
-      <span class="text-primary"
-        ><%=item.attribute.charAt(0).toUpperCase() + item.attribute.slice(1)
-        %></span
-      >
-    </p>
-    <p class="card-text fw-bold">In Stock: <%=item.stock %></p>
+<a href="/item/<%=item.item_id %>" class="card-link">
+  <div class="card">
+    <img
+      src="<%=item.image_url %>"
+      class="card-img-top"
+      alt="<%=item.description %>"
+    />
+    <div class="card-body">
+      <h5 class="card-title"><%=item.item_name %></h5>
+      <p class="card-text description-text"><%=item.description %></p>
+      <p class="card-text fw-bold">
+        Stats:
+        <span class="text-success">+<%=item.value %></span>
+        <span class="text-primary"
+          ><%=item.attribute.charAt(0).toUpperCase() + item.attribute.slice(1)
+          %></span
+        >
+      </p>
+      <p class="card-text fw-bold">In Stock: <%=item.stock %></p>
+    </div>
   </div>
-</div>
+</a>

@@ -70,8 +70,33 @@ ORDER BY i.id;
   return rows;
 }
 
+async function getItem(id) {
+  const { rows } = await pool.query(
+    `
+SELECT i.id AS item_id,
+       i.name AS item_name,
+       i.type,
+       i.description,
+       i.image_url,
+       i.price,
+       i.stock,
+       e.name AS element_name,
+       ia.attribute,
+       ia.value
+FROM item i
+JOIN element e ON i.element_id = e.id
+LEFT JOIN item_attribute ia ON ia.item_id = i.id
+WHERE i.id = $1
+ORDER BY i.id;
+  `,
+    [id],
+  );
+  return rows;
+}
+
 module.exports = {
   getElementItems,
   getAllItems,
   getWeaponItems,
+  getItem,
 };
