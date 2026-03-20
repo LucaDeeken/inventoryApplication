@@ -3,7 +3,6 @@ const db = require("../db/queries");
 async function getAll(req, res) {
   const elementItems = await db.getAllItems();
   const filteredElementItems = filterDoubles(elementItems);
-  console.log(filteredElementItems);
   res.render("index", { items: filteredElementItems });
 }
 
