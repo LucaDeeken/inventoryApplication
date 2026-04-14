@@ -97,3 +97,11 @@ body .container-fluid {
 a:hover {
   color: rgb(160, 4, 4) !important;
 }
+
+.create-form {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 2rem;
+  width: 700px;
+  justify-self: center;
+}

@@ -94,9 +94,66 @@ ORDER BY i.id;
   return rows;
 }
 
+async function createItem(data) {
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    let elementRes = await client.query(
+      "SELECT id FROM element WHERE name = $1",
+      [data.element_name],
+    );
+
+    let elementId;
+
+    if (elementRes.rows.length === 0) {
+      const newElement = await client.query(
+        "INSERT INTO element (name) VALUES ($1) RETURNING id",
+        [data.element_name],
+      );
+      elementId = newElement.rows[0].id;
+    } else {
+      elementId = elementRes.rows[0].id;
+    }
+
+    const itemRes = await client.query(
+      `INSERT INTO item 
+      (name, description, type, stock, price, image_url, element_id)
+      VALUES ($1,$2,$3,$4,$5,$6,$7)
+      RETURNING id`,
+      [
+        data.item_name,
+        data.description,
+        data.type,
+        data.stock,
+        data.price,
+        data.image_url,
+        elementId,
+      ],
+    );
+
+    const itemId = itemRes.rows[0].id;
+
+    await client.query(
+      `INSERT INTO item_attribute (attribute, value, item_id)
+       VALUES ($1,$2,$3)`,
+      [data.attribute, data.value, itemId],
+    );
+
+    await client.query("COMMIT");
+  } catch (err) {
+    await client.query("ROLLBACK");
+    throw err;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   getElementItems,
   getAllItems,
   getWeaponItems,
   getItem,
+  createItem,
 };
