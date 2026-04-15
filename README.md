@@ -67,3 +67,4 @@ The project is deployed using Railway.
 - Express.js
 - PostgreSQL
 - HTML / CSS / JavaScript (frontend in progress)
+- EJS
