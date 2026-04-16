@@ -137,5 +137,26 @@
       </div>
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+      async function deleteItem(id) {
+        const password = prompt("Enter admin password:");
+        console.log(password);
+        if (!password) return;
+
+        const res = await fetch(`/delete/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password }),
+        });
+
+        if (res.ok) {
+          window.location.href = "/";
+        } else {
+          alert("Wrong password");
+        }
+      }
+    </script>
   </body>
 </html>
