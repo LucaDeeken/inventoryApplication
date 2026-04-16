@@ -1,12 +1,13 @@
 const db = require("../db/queries");
 
+//renders all items from the DB
 async function getAll(req, res) {
   const elementItems = await db.getAllItems();
   const filteredElementItems = filterDoubles(elementItems);
-  console.log(filteredElementItems);
   res.render("layout", { items: filteredElementItems, view: "index" });
 }
 
+//renders a specific element from the DB
 async function getElement(req, res) {
   const { searchElement } = req.params;
   const elementItems = await db.getElementItems(searchElement);
@@ -14,6 +15,7 @@ async function getElement(req, res) {
   res.render("layout", { items: filteredElementItems, view: "index" });
 }
 
+//renders a specific item from the DB by it's name
 async function getWeapon(req, res) {
   const { searchWeapon } = req.params;
   const elementItems = await db.getWeaponItems(searchWeapon);
@@ -21,6 +23,7 @@ async function getWeapon(req, res) {
   res.render("layout", { items: filteredElementItems, view: "index" });
 }
 
+//filters the array so in return there are no doubles
 function filterDoubles(sqlReturn) {
   const newArr = [];
   sqlReturn.forEach((element) => {
@@ -34,6 +37,7 @@ function filterDoubles(sqlReturn) {
   return newArr;
 }
 
+//renders a specific item from the DB by it's ID
 async function getItemId(req, res) {
   console.log(req.params);
   const { id } = req.params;
@@ -42,6 +46,8 @@ async function getItemId(req, res) {
   res.render("layout", { item: filteredElementItems[0], view: "index" });
 }
 
+//transfers two arrays, one with all elementNames, the second has all weaponTypes to the createItem-viewFile
+//it's purpose is to create two dropdowns, in which the user can select what kind of weapon he/she wants to create
 async function createItemDropdowns(req, res) {
   res.render("layout", {
     options: ["Fire", "Earth", "Air", "Holy", "Unholy", "Chaos", "Water"],
@@ -50,6 +56,7 @@ async function createItemDropdowns(req, res) {
   });
 }
 
+//if the admin-password is correct, with the given parameters a new item is created inside the DB
 async function createItem(req, res) {
   const { password } = req.body;
   if (password !== process.env.ADMIN_PASSWORD) {
@@ -64,6 +71,7 @@ async function createItem(req, res) {
   }
 }
 
+//if the admin-password is correct, an item will be deleted inside the DB
 async function deleteItem(req, res) {
   const { password } = req.body;
   const { id } = req.params;
