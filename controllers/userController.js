@@ -64,6 +64,21 @@ async function createItem(req, res) {
   }
 }
 
+async function deleteItem(req, res) {
+  const password = prompt("Enter admin password:");
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(403).send("Wrong admin password");
+  }
+  const { id } = req.params;
+  try {
+    await db.deleteWeapon(id);
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.send("Error creating item");
+  }
+}
+
 module.exports = {
   getAll,
   getElement,
@@ -71,4 +86,5 @@ module.exports = {
   getItemId,
   createItemDropdowns,
   createItem,
+  deleteItem,
 };

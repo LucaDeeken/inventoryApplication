@@ -9,5 +9,6 @@ usersRouter.get("/weapon/:searchWeapon", usersController.getWeapon);
 usersRouter.get("/item/:id", usersController.getItemId);
 usersRouter.get("/create", usersController.createItemDropdowns);
 usersRouter.post("/create", usersController.createItem);
+usersRouter.delete("/delete", usersController.deleteItem);
 
 module.exports = usersRouter;

@@ -150,10 +150,15 @@ async function createItem(data) {
   }
 }
 
+async function deleteWeapon(id) {
+  await pool.query("DELETE FROM item WHERE id = $1", [id]);
+}
+
 module.exports = {
   getElementItems,
   getAllItems,
   getWeaponItems,
   getItem,
   createItem,
+  deleteWeapon,
 };
