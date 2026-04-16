@@ -151,6 +151,7 @@ async function createItem(data) {
 }
 
 async function deleteWeapon(id) {
+  await pool.query("DELETE FROM item_attribute WHERE item_id = $1", [id]);
   await pool.query("DELETE FROM item WHERE id = $1", [id]);
 }
 

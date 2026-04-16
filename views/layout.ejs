@@ -140,7 +140,6 @@
     <script>
       async function deleteItem(id) {
         const password = prompt("Enter admin password:");
-        console.log(password);
         if (!password) return;
 
         const res = await fetch(`/delete/${id}`, {
