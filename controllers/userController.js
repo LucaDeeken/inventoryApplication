@@ -66,6 +66,7 @@ async function createItem(req, res) {
 
 async function deleteItem(req, res) {
   const { password } = req.body;
+  console.log(password);
   const { id } = req.params;
 
   if (password !== process.env.ADMIN_PASSWORD) {
