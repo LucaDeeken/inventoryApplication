@@ -1,3 +1,25 @@
+<script>
+  async function deleteItem(id) {
+    const password = prompt("Enter admin password:");
+
+    if (!password) return;
+
+    const res = await fetch(`/delete/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password }),
+    });
+
+    if (res.ok) {
+      window.location.href = "/";
+    } else {
+      alert("Wrong password");
+    }
+  }
+</script>
+
 <div class="card card-detail" style="width: 23rem">
   <img
     src="<%=item.image_url %>"
@@ -16,6 +38,6 @@
       >
     </p>
     <p class="card-text fw-bold">In Stock: <%=item.stock %></p>
-    <a href="/delete" class="">Delete</a>
+    <button onclick="deleteItem(<%=item.item_id %>)">Delete</button>
   </div>
 </div>

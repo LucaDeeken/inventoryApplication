@@ -65,17 +65,19 @@ async function createItem(req, res) {
 }
 
 async function deleteItem(req, res) {
-  const password = prompt("Enter admin password:");
+  const { password } = req.body;
+  const { id } = req.params;
+
   if (password !== process.env.ADMIN_PASSWORD) {
     return res.status(403).send("Wrong admin password");
   }
-  const { id } = req.params;
+
   try {
     await db.deleteWeapon(id);
-    res.redirect("/");
+    return res.sendStatus(200);
   } catch (err) {
     console.error(err);
-    res.send("Error creating item");
+    res.status(500).send("Error deleting item");
   }
 }
 
