@@ -1,7 +1,8 @@
 # Inventory Management App
 
 ## Overview
-This is a full-stack Inventory Management application built with Express and PostgreSQL and still under construction.  
+This is a full-stack Inventory Management application built with Express and PostgreSQL and still under construction.
+I included a bit of Bootstrap, because I wanted to learn how it works.
 The app allows users to manage an inventory for a fictional store using categories (Elements), items, and item attributes. Users can create, read, update, and delete data across these entities.
 
 The project was built as part of a learning exercise focused on backend development, database design, and CRUD operations.
@@ -68,3 +69,4 @@ The project is deployed using Railway.
 - PostgreSQL
 - HTML / CSS / JavaScript (frontend in progress)
 - EJS
+- Bootstrap
